@@ -1,12 +1,12 @@
 import express from 'express';
 import { get } from './replacer.js';
-import redis from './cache.js';
+import redis, { shutdown } from './cache.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-  res.send('lmao');
+  res.send('ok');
 });
 
 app.get('/feed', (req, res) => {
@@ -33,3 +33,6 @@ app.listen(PORT, () => {
     });
   console.log('Server listening');
 });
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
