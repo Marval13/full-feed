@@ -35,14 +35,14 @@ export async function get(url, selectors) {
   });
 
   await Promise.all(feed.items.map(async (item) => {
-    const cached = await redis.get(`${feed.link}:${item.guid}`);
+    const cached = await redis.get(`${feed.link}:${item.link}`);
     let body;
     if (cached) {
       body = cached;
     } else {
       const res = await fetch(item.link, opts);
       body = await res.text();
-      await redis.setEx(`${feed.link}:${item.guid}`, 60 * 60 * 24 * 7, body);
+      await redis.setEx(`${feed.link}:${item.link}`, 60 * 60 * 24 * 7, body);
     }
 
     const description = replace(body, selectors, item.link);
