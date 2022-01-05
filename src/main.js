@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 app.get('/feed', (req, res) => {
   const { url } = req.query;
   const selectors = JSON.parse(req.query.selectors);
-  // console.log(`Request for ${url}`);
+  console.log(`Request for ${url}`);
   // console.log(`Selectors: ${selectors}`);
   get(url, selectors).then((f) => {
     // console.log('Ok');
