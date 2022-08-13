@@ -24,6 +24,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.2",
+    "node-fetch": ">=3.2.10",
     "node-fetch-retry": "^2.0.0",
     "redis": "^4.0.1",
     "rss": "^1.2.2",
